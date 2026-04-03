@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knot & Bloom | Artisan Crochet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-light: #FDFaf6;
+            --text-dark: #3E2F26;
+            --text-light: #7A6F68;
+            --accent-rust: #C57053;
+            --accent-hover: #b05c41;
+            --bg-dark-brown: #45352C;
+            --card-bg: #FFFFFF;
+            --badge-bg: #f2e8de;
+            --border-color: #EAE0D5;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+        h1, h2, h3, h4, .logo, .price, .stat-num { font-family: 'Playfair Display', serif; }
+        em { color: var(--accent-rust); font-style: italic; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+        /* Components */
+        .badge { display: inline-block; padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; letter-spacing: 1px; margin-bottom: 1rem; }
+        .badge-light { background: var(--badge-bg); color: var(--accent-rust); }
+        .btn { padding: 0.8rem 1.8rem; border-radius: 50px; font-weight: 500; cursor: pointer; transition: 0.3s; border: none; font-size: 0.95rem; display: inline-block; }
+        .btn-primary { background: var(--accent-rust); color: #fff; }
+        .btn-outline { background: transparent; border: 1px solid var(--text-dark); color: var(--text-dark); }
+        .section-padding { padding: 5rem 8%; }
+
+        /* Navbar */
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 8%; background: var(--bg-light); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid var(--border-color); }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--accent-rust); }
+        .nav-links { display: flex; gap: 2.5rem; }
+        .nav-links a { font-size: 0.8rem; font-weight: 600; letter-spacing: 1.2px; }
+
+        /* Hero */
+        .hero { display: flex; align-items: center; padding: 4rem 8%; gap: 4rem; }
+        .hero-content { flex: 1; }
+        .hero-content h1 { font-size: 4.5rem; line-height: 1.1; margin-bottom: 1.5rem; }
+        .hero-images { flex: 1; display: flex; gap: 1.2rem; height: 500px; }
+        .img-large { flex: 1.3; border-radius: 24px; background-image: url("https://images.unsplash.com/photo-1542488554-ac1837d7aee7"); background-size: cover; background-position: center; position: relative; }
+        .img-small-1 { height: 50%; border-radius: 24px; background-image: url("https://images.unsplash.com/photo-1670189242867-b37dcd960bbb"); background-size: cover; background-position: center; position: relative; }
+        .img-small-2 { height: 50%; border-radius: 24px; background-image: url("https://images.unsplash.com/photo-1728393287642-13bee7126ae8"); background-size: cover; background-position: center; position: relative; }
+        .img-tag { position: absolute; bottom: 20px; left: 20px; background: #fff; padding: 0.4rem 1rem; border-radius: 8px; font-size: 0.75rem; font-weight: 600; }
+
+        /* Stats Section (New) */
+        .stats-section { background: var(--bg-dark-brown); color: #fff; display: flex; justify-content: space-around; padding: 4rem 8%; text-align: center; }
+        .stat-num { font-size: 3rem; display: block; color: #EAE0D5; }
+        .stat-label { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.7; }
+
+        /* Product Section */
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .product-card { background: #fff; border-radius: 24px; padding: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+        .product-img { height: 280px; border-radius: 18px; margin-bottom: 1.5rem; background-size: cover; background-position: center; position: relative; }
+        .price-row { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; }
+        .add-btn { background: var(--text-dark); color: #fff; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; }
+
+        /* Story Section */
+        .story { display: flex; align-items: center; gap: 5rem; }
+        .story-img { flex: 1; height: 550px; border-radius: 24px; background-image: url("https://images.pexels.com/photos/18971489/pexels-photo-18971489.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"); background-size: cover; background-position: center; position: relative; }
+        .award-pop { position: absolute; bottom: 20px; right: 20px; background: #fff; padding: 1rem 1.5rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 10px; }
+        .feature-box { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+        .f-item { background: #f2e8de; padding: 1rem; border-radius: 12px; font-size: 0.85rem; font-weight: 500; }
+
+        /* Patterns (Dark Section) */
+        .patterns { background: var(--bg-dark-brown); color: #fff; text-align: center; }
+        .pattern-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; text-align: left; }
+        .p-card { background: rgba(255,255,255,0.05); border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+        .p-img { height: 220px; background-size: cover; background-position: center; }
+        .p-info { padding: 2rem; }
+        .p-meta { font-size: 0.75rem; opacity: 0.7; margin: 0.5rem 0 1.5rem; display: block; }
+
+        /* Reviews */
+        .review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .r-card { background: #fff; padding: 2.5rem; border-radius: 24px; }
+        .stars { color: #F5C518; margin-bottom: 1rem; }
+        .author { display: flex; align-items: center; gap: 1rem; margin-top: 1.5rem; font-size: 0.9rem; }
+        .avatar { width: 40px; height: 40px; border-radius: 50%; background: #eee; }
+
+        /* Newsletter & Footer */
+        .newsletter { background: var(--accent-rust); color: #fff; text-align: center; padding: 5rem 8%; }
+        .input-group { background: #fff; border-radius: 50px; display: flex; max-width: 500px; margin: 2rem auto; padding: 0.3rem; }
+        .input-group input { flex: 1; border: none; padding: 0 1.5rem; outline: none; border-radius: 50px; }
+        .input-group button { background: var(--text-dark); color: #fff; border: none; padding: 0.8rem 2rem; border-radius: 50px; cursor: pointer; }
+        footer { background: var(--bg-dark-brown); color: rgba(255,255,255,0.6); padding: 5rem 8% 2rem; }
+        .f-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+        .f-brand h3 { color: #fff; margin-bottom: 1rem; }
+        .f-links a { display: block; margin-bottom: 0.5rem; font-size: 0.9rem; }
+
+        @media (max-width: 968px) {
+            .hero, .story { flex-direction: column; text-align: center; }
+            .hero-images { width: 100%; height: 400px; }
+            .f-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">🧶 Knot & Bloom</div>
+        <div class="nav-links">
+            <a href="#shop">SHOP</a>
+            <a href="#patterns">PATTERNS</a>
+            <a href="#about">ABOUT</a>
+            <a href="#reviews">REVIEWS</a>
+        </div>
+        <button class="btn btn-primary">JOIN US</button>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="badge badge-light">✦ HANDCRAFTED WITH LOVE</span>
+            <h1>Artisan Crochet <br><em>Crafted for You</em></h1>
+            <p>Each piece is lovingly hand-crocheted using premium natural fibres. Timeless craft, modern beauty.</p>
+            <div style="display:flex; gap:15px;">
+                <button class="btn btn-primary">Explore Collection</button>
+                <button class="btn btn-outline">📖 Free Patterns</button>
+            </div>
+        </div>
+        <div class="hero-images">
+            <div class="img-large"><span class="img-tag">Premium Yarn</span></div>
+            <div style="flex:1; display:flex; flex-direction:column; gap:1.2rem;">
+                <div class="img-small-1"><span class="img-tag">Cozy Throws</span></div>
+                <div class="img-small-2"><span class="img-tag">Baby Sets</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div><span class="stat-num">2,400+</span><span class="stat-label">Happy Customers</span></div>
+        <div><span class="stat-num">180+</span><span class="stat-label">Unique Patterns</span></div>
+        <div><span class="stat-num">100%</span><span class="stat-label">Natural Fibres</span></div>
+        <div><span class="stat-num">12yr</span><span class="stat-label">Craft Experience</span></div>
+    </section>
+
+    <section id="shop" class="section-padding" style="text-align: center;">
+        <span class="badge badge-light">✦ OUR COLLECTION</span>
+        <h2>Handmade with <em>Care</em></h2>
+        <p style="color: var(--text-light);">Every item is made-to-order, ensuring freshness reaches your door.</p>
+        
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1693387347071-d3bf494cbe0e');">
+                    <span class="tag tag-green" style="position:absolute; top:15px; left:15px; background:#7A9E59; color:#fff; padding:2px 10px; border-radius:10px; font-size:10px;">NEW</span>
+                </div>
+                <h3 style="text-align:left;">Garden Throw Blanket</h3>
+                <p style="text-align:left; font-size:11px; color:gray; letter-spacing:1px;">HOME DÉCOR · COTTON</p>
+                <div class="price-row">
+                    <span class="price">₹3,200</span>
+                    <button class="add-btn">+</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1565592284032-d3c08f2a53e9');">
+                    <span class="tag tag-orange" style="position:absolute; top:15px; left:15px; background:#D68C5E; color:#fff; padding:2px 10px; border-radius:10px; font-size:10px;">BESTSELLER</span>
+                </div>
+                <h3 style="text-align:left;">Lace Market Bag</h3>
+                <p style="text-align:left; font-size:11px; color:gray; letter-spacing:1px;">ACCESSORIES · JUTE BLEND</p>
+                <div class="price-row">
+                    <span class="price">₹1,450</span>
+                    <button class="add-btn">+</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://images.pexels.com/photos/5806980/pexels-photo-5806980.jpeg');"></div>
+                <h3 style="text-align:left;">Baby Heirloom Set</h3>
+                <p style="text-align:left; font-size:11px; color:gray; letter-spacing:1px;">BABY · MERINO WOOL</p>
+                <div class="price-row">
+                    <span class="price">₹2,200</span>
+                    <button class="add-btn">+</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://images.pexels.com/photos/33853684/pexels-photo-33853684.jpeg');">
+                    <span class="tag tag-green" style="position:absolute; top:15px; left:15px; background:#7A9E59; color:#fff; padding:2px 10px; border-radius:10px; font-size:10px;">NEW</span>
+                </div>
+                <h3 style="text-align:left;">Boho Sun Hat</h3>
+                <p style="text-align:left; font-size:11px; color:gray; letter-spacing:1px;">ACCESSORIES · RAFFIA</p>
+                <div class="price-row">
+                    <span class="price">₹1,850</span>
+                    <button class="add-btn">+</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section-padding story">
+        <div class="story-img">
+            <div class="award-pop">
+                🏆 <div><strong style="font-size:0.8rem;">Award Winning</strong><br><span style="font-size:0.6rem; color:gray;">Craft Fair Gold 2024</span></div>
+            </div>
+        </div>
+        <div class="hero-content" style="text-align: left;">
+            <span class="badge badge-light">✦ OUR STORY</span>
+            <h2>Rooted in <em>Tradition</em>,<br>Crafted for Today</h2>
+            <p>Knot & Bloom was born from stories of love and patience. Today we carry that same warmth into every stitch.</p>
+            <div class="feature-box">
+                <div class="f-item">🌿 100% Natural Fibres</div>
+                <div class="f-item">🤝 Ethically Sourced</div>
+                <div class="f-item">✂️ Custom Orders</div>
+                <div class="f-item">📦 Gift Packaging</div>
+            </div>
+            <button class="btn btn-primary" style="margin-top:2rem;">Shop the Collection</button>
+        </div>
+    </section>
+
+    <section id="patterns" class="section-padding patterns">
+        <span class="badge badge-dark">✦ LEARN & CREATE</span>
+        <h2>Crochet <em>Patterns</em></h2>
+        <p style="opacity:0.7;">From beginner-friendly tutorials to complex heirloom designs.</p>
+        
+        <div class="pattern-grid">
+            <div class="p-card">
+                <div class="p-img" style="background-image: url('https://images.pexels.com/photos/30036957/pexels-photo-30036957.jpeg');"></div>
+                <div class="p-info">
+                    <h3>Sunflower Granny Square</h3>
+                    <span class="p-meta"><span style="background:#444; padding:2px 8px; border-radius:5px;">BEGINNER</span> 2-3 hrs</span>
+                    <span class="price" style="color:#fff;">FREE</span>
+                </div>
+            </div>
+            <div class="p-card">
+                <div class="p-img" style="background-image: url('https://images.unsplash.com/photo-1760837992224-e73b2ba6f1c6');"></div>
+                <div class="p-info">
+                    <h3>Leaf Lace Shawl</h3>
+                    <span class="p-meta"><span style="background:#5a4033; padding:2px 8px; border-radius:5px;">INTERMEDIATE</span> 6-8 hrs</span>
+                    <span class="price" style="color:#fff;">₹199</span>
+                </div>
+            </div>
+            <div class="p-card">
+                <div class="p-img" style="background-image: url('https://images.unsplash.com/photo-1763055791902-7e13aef5e77c');"></div>
+                <div class="p-info">
+                    <h3>Owl Amigurumi</h3>
+                    <span class="p-meta"><span style="background:#444; padding:2px 8px; border-radius:5px;">BEGINNER</span> 3-4 hrs</span>
+                    <span class="price" style="color:#fff;">₹149</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="section-padding" style="text-align: center;">
+        <span class="badge badge-light">✦ KIND WORDS</span>
+        <h2>Loved by <em>Makers</em></h2>
+        <div class="review-grid">
+            <div class="r-card">
+                <div class="stars">★★★★★</div>
+                <p style="font-style:italic; font-size:0.95rem;">"The throw blanket is divine — the texture and colour are perfect!"</p>
+                <div class="author"><strong>Priya Sharma</strong> <span>Mumbai, India</span></div>
+            </div>
+            <div class="r-card">
+                <div class="stars">★★★★★</div>
+                <p style="font-style:italic; font-size:0.95rem;">"Ordered baby sets as gifts. The quality and packaging are stunning."</p>
+                <div class="author"><strong>Anjali Mehta</strong> <span>Bangalore, India</span></div>
+            </div>
+            <div class="r-card">
+                <div class="stars">★★★★★</div>
+                <p style="font-style:italic; font-size:0.95rem;">"Instructions are so clear and the result was beautiful. I'm hooked!"</p>
+                <div class="author"><strong>Rohan Patel</strong> <span>Ahmedabad, India</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <h2>Join the Knot & Bloom Family</h2>
+        <p>Get free patterns & exclusive offers.</p>
+        <div class="input-group">
+            <input type="email" placeholder="Your email address...">
+            <button>SUBSCRIBE</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="f-grid">
+            <div class="f-brand">
+                <h3>🧶 Knot & Bloom</h3>
+                <p>Handcrafted crochet pieces for those who appreciate the art of slow craft.</p>
+            </div>
+            <div class="f-links"><h4>SHOP</h4><a href="#">All Products</a><a href="#">Blankets</a><a href="#">Baby</a></div>
+            <div class="f-links"><h4>LEARN</h4><a href="#">Free Patterns</a><a href="#">Tutorials</a><a href="#">Blog</a></div>
+            <div class="f-links"><h4>ABOUT</h4><a href="#">Our Story</a><a href="#">Contact</a><a href="#">FAQ</a></div>
+        </div>
+        <p style="font-size: 0.7rem; opacity: 0.5;">© 2025 Knot & Bloom. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
