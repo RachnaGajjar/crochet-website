@@ -21,84 +21,180 @@
             --border-color: #EAE0D5;
         }
 
+        /* Base Styles */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg-light); 
+            color: var(--text-dark); 
+            line-height: 1.6; 
+            overflow-x: hidden;
+        }
         h1, h2, h3, h4, .logo, .price, .stat-num { font-family: 'Playfair Display', serif; }
         em { color: var(--accent-rust); font-style: italic; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
 
-        /* Components */
+        /* Reusable Components */
         .badge { display: inline-block; padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; letter-spacing: 1px; margin-bottom: 1rem; }
         .badge-light { background: var(--badge-bg); color: var(--accent-rust); }
-        .btn { padding: 0.8rem 1.8rem; border-radius: 50px; font-weight: 500; cursor: pointer; transition: 0.3s; border: none; font-size: 0.95rem; display: inline-block; }
+        .btn { padding: 0.8rem 1.8rem; border-radius: 50px; font-weight: 500; cursor: pointer; transition: 0.3s; border: none; font-size: 0.95rem; display: inline-block; text-align: center; }
         .btn-primary { background: var(--accent-rust); color: #fff; }
+        .btn-primary:hover { background: var(--accent-hover); }
         .btn-outline { background: transparent; border: 1px solid var(--text-dark); color: var(--text-dark); }
         .section-padding { padding: 5rem 8%; }
 
         /* Navbar */
-        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 8%; background: var(--bg-light); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid var(--border-color); }
+        .navbar { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 1.2rem 8%; 
+            background: var(--bg-light); 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            border-bottom: 1px solid var(--border-color); 
+        }
         .logo { font-size: 1.5rem; font-weight: 700; color: var(--accent-rust); }
-        .nav-links { display: flex; gap: 2.5rem; }
+        .nav-links { display: flex; gap: 2.5rem; align-items: center; }
         .nav-links a { font-size: 0.8rem; font-weight: 600; letter-spacing: 1.2px; }
+        
+        /* Mobile Menu Toggle */
+        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
 
-        /* Hero */
-        .hero { display: flex; align-items: center; padding: 4rem 8%; gap: 4rem; }
+        /* Hero Section */
+        .hero { 
+            display: flex; 
+            align-items: center; 
+            padding: 4rem 8%; 
+            gap: 4rem; 
+            min-height: 80vh;
+        }
         .hero-content { flex: 1; }
-        .hero-content h1 { font-size: 4.5rem; line-height: 1.1; margin-bottom: 1.5rem; }
-        .hero-images { flex: 1; display: flex; gap: 1.2rem; height: 500px; }
-        .img-large { flex: 1.3; border-radius: 24px; background-image: url("https://images.unsplash.com/photo-1542488554-ac1837d7aee7"); background-size: cover; background-position: center; position: relative; }
-        .img-small-1 { height: 50%; border-radius: 24px; background-image: url("https://images.unsplash.com/photo-1670189242867-b37dcd960bbb"); background-size: cover; background-position: center; position: relative; }
-        .img-small-2 { height: 50%; border-radius: 24px; background-image: url("https://images.unsplash.com/photo-1728393287642-13bee7126ae8"); background-size: cover; background-position: center; position: relative; }
-        .img-tag { position: absolute; bottom: 20px; left: 20px; background: #fff; padding: 0.4rem 1rem; border-radius: 8px; font-size: 0.75rem; font-weight: 600; }
+        .hero-content h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.1; margin-bottom: 1.5rem; }
+        .hero-images { flex: 1; display: flex; gap: 1.2rem; height: 500px; width: 100%; }
+        .img-large { flex: 1.3; border-radius: 24px; background-image: url("https://images.unsplash.com/photo-1542488554-ac1837d7aee7?auto=format&fit=crop&q=80"); background-size: cover; background-position: center; position: relative; }
+        .img-stack { flex: 1; display: flex; flex-direction: column; gap: 1.2rem; }
+        .img-small-1 { flex: 1; border-radius: 24px; background-image: url("https://images.unsplash.com/photo-1670189242867-b37dcd960bbb?auto=format&fit=crop&q=80"); background-size: cover; background-position: center; position: relative; }
+        .img-small-2 { flex: 1; border-radius: 24px; background-image: url("https://images.unsplash.com/photo-1728393287642-13bee7126ae8?auto=format&fit=crop&q=80"); background-size: cover; background-position: center; position: relative; }
+        .img-tag { position: absolute; bottom: 20px; left: 20px; background: #fff; padding: 0.4rem 1rem; border-radius: 8px; font-size: 0.75rem; font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
 
-        /* Stats Section (New) */
-        .stats-section { background: var(--bg-dark-brown); color: #fff; display: flex; justify-content: space-around; padding: 4rem 8%; text-align: center; }
+        /* Stats Section */
+        .stats-section { 
+            background: var(--bg-dark-brown); 
+            color: #fff; 
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            padding: 4rem 8%; 
+            text-align: center; 
+            gap: 2rem;
+        }
         .stat-num { font-size: 3rem; display: block; color: #EAE0D5; }
         .stat-label { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.7; }
 
-        /* Product Section */
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; }
-        .product-card { background: #fff; border-radius: 24px; padding: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+        /* Grid Frameworks */
+        .grid-auto { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 2rem; 
+            margin-top: 3rem; 
+        }
+
+        /* Products */
+        .product-card { background: #fff; border-radius: 24px; padding: 1.5rem; transition: 0.3s; }
+        .product-card:hover { transform: translateY(-10px); }
         .product-img { height: 280px; border-radius: 18px; margin-bottom: 1.5rem; background-size: cover; background-position: center; position: relative; }
         .price-row { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; }
-        .add-btn { background: var(--text-dark); color: #fff; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; }
+        .add-btn { background: var(--text-dark); color: #fff; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; }
 
         /* Story Section */
         .story { display: flex; align-items: center; gap: 5rem; }
-        .story-img { flex: 1; height: 550px; border-radius: 24px; background-image: url("https://images.pexels.com/photos/18971489/pexels-photo-18971489.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"); background-size: cover; background-position: center; position: relative; }
+        .story-img { 
+            flex: 1; 
+            height: 550px; 
+            border-radius: 24px; 
+            background-image: url("https://images.pexels.com/photos/18971489/pexels-photo-18971489.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"); 
+            background-size: cover; 
+            background-position: center; 
+            position: relative; 
+            width: 100%;
+        }
         .award-pop { position: absolute; bottom: 20px; right: 20px; background: #fff; padding: 1rem 1.5rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 10px; }
         .feature-box { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
-        .f-item { background: #f2e8de; padding: 1rem; border-radius: 12px; font-size: 0.85rem; font-weight: 500; }
+        .f-item { background: #f2e8de; padding: 1rem; border-radius: 12px; font-size: 0.85rem; font-weight: 500; text-align: center; }
 
         /* Patterns (Dark Section) */
         .patterns { background: var(--bg-dark-brown); color: #fff; text-align: center; }
-        .pattern-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; text-align: left; }
-        .p-card { background: rgba(255,255,255,0.05); border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+        .p-card { background: rgba(255,255,255,0.05); border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); text-align: left; transition: 0.3s; }
+        .p-card:hover { background: rgba(255,255,255,0.1); }
         .p-img { height: 220px; background-size: cover; background-position: center; }
         .p-info { padding: 2rem; }
         .p-meta { font-size: 0.75rem; opacity: 0.7; margin: 0.5rem 0 1.5rem; display: block; }
+        .p-tag { background: rgba(255,255,255,0.15); padding: 2px 8px; border-radius: 5px; margin-right: 8px; }
 
         /* Reviews */
-        .review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
-        .r-card { background: #fff; padding: 2.5rem; border-radius: 24px; }
+        .r-card { background: #fff; padding: 2.5rem; border-radius: 24px; text-align: left; }
         .stars { color: #F5C518; margin-bottom: 1rem; }
         .author { display: flex; align-items: center; gap: 1rem; margin-top: 1.5rem; font-size: 0.9rem; }
-        .avatar { width: 40px; height: 40px; border-radius: 50%; background: #eee; }
 
-        /* Newsletter & Footer */
+        /* Newsletter */
         .newsletter { background: var(--accent-rust); color: #fff; text-align: center; padding: 5rem 8%; }
         .input-group { background: #fff; border-radius: 50px; display: flex; max-width: 500px; margin: 2rem auto; padding: 0.3rem; }
-        .input-group input { flex: 1; border: none; padding: 0 1.5rem; outline: none; border-radius: 50px; }
-        .input-group button { background: var(--text-dark); color: #fff; border: none; padding: 0.8rem 2rem; border-radius: 50px; cursor: pointer; }
+        .input-group input { flex: 1; border: none; padding: 0 1.5rem; outline: none; border-radius: 50px; font-size: 0.9rem; min-width: 0; }
+        .input-group button { background: var(--text-dark); color: #fff; border: none; padding: 0.8rem 2rem; border-radius: 50px; cursor: pointer; font-weight: 600; }
+
+        /* Footer */
         footer { background: var(--bg-dark-brown); color: rgba(255,255,255,0.6); padding: 5rem 8% 2rem; }
         .f-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
         .f-brand h3 { color: #fff; margin-bottom: 1rem; }
-        .f-links a { display: block; margin-bottom: 0.5rem; font-size: 0.9rem; }
+        .f-links h4 { color: #fff; margin-bottom: 1.2rem; font-size: 0.9rem; letter-spacing: 1px; }
+        .f-links a { display: block; margin-bottom: 0.6rem; font-size: 0.9rem; }
+        .f-links a:hover { color: #fff; }
+
+        /* --- RESPONSIVE QUERIES --- */
+
+        @media (max-width: 1024px) {
+            .section-padding { padding: 4rem 5%; }
+            .hero { gap: 2rem; }
+        }
 
         @media (max-width: 968px) {
-            .hero, .story { flex-direction: column; text-align: center; }
-            .hero-images { width: 100%; height: 400px; }
+            .menu-toggle { display: block; order: 3; }
+            .navbar .btn { display: none; } /* Hide the Nav button on mobile */
+            
+            .nav-links { 
+                position: fixed; top: 70px; left: -100%; width: 100%; height: calc(100vh - 70px); 
+                background: var(--bg-light); flex-direction: column; padding: 3rem; 
+                transition: 0.4s; border-top: 1px solid var(--border-color);
+            }
+            .nav-links.active { left: 0; }
+
+            .hero { flex-direction: column; text-align: center; padding-top: 2rem; }
+            .hero-images { height: 400px; }
+            
+            .story { flex-direction: column-reverse; text-align: center; gap: 3rem; }
+            .story-img { height: 400px; }
+            
             .f-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-images { height: 350px; }
+            .hero-images .img-tag { font-size: 0.65rem; padding: 0.3rem 0.6rem; }
+            
+            .stats-section { grid-template-columns: 1fr 1fr; }
+            .stat-num { font-size: 2rem; }
+            
+            .feature-box { grid-template-columns: 1fr; }
+            .f-grid { grid-template-columns: 1fr; gap: 2rem; }
+            
+            .input-group { flex-direction: column; background: transparent; padding: 0; gap: 10px; }
+            .input-group input { padding: 1rem; border-radius: 50px; text-align: center; }
+            .input-group button { width: 100%; }
+            
+            .section-padding { padding: 3rem 5%; }
         }
     </style>
 </head>
@@ -106,12 +202,16 @@
 
     <nav class="navbar">
         <div class="logo">🧶 Knot & Bloom</div>
-        <div class="nav-links">
-            <a href="#shop">SHOP</a>
-            <a href="#patterns">PATTERNS</a>
-            <a href="#about">ABOUT</a>
-            <a href="#reviews">REVIEWS</a>
-        </div>
+        
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#shop">SHOP</a></li>
+            <li><a href="#patterns">PATTERNS</a></li>
+            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#reviews">REVIEWS</a></li>
+            <li class="mobile-only"><button class="btn btn-primary" style="width: 100%; margin-top: 1rem;">JOIN US</button></li>
+        </ul>
+
+        <div class="menu-toggle" id="menuToggle">☰</div>
         <button class="btn btn-primary">JOIN US</button>
     </nav>
 
@@ -120,14 +220,14 @@
             <span class="badge badge-light">✦ HANDCRAFTED WITH LOVE</span>
             <h1>Artisan Crochet <br><em>Crafted for You</em></h1>
             <p>Each piece is lovingly hand-crocheted using premium natural fibres. Timeless craft, modern beauty.</p>
-            <div style="display:flex; gap:15px;">
+            <div style="display:flex; gap:15px; margin-top: 2rem; justify-content: inherit;">
                 <button class="btn btn-primary">Explore Collection</button>
                 <button class="btn btn-outline">📖 Free Patterns</button>
             </div>
         </div>
         <div class="hero-images">
             <div class="img-large"><span class="img-tag">Premium Yarn</span></div>
-            <div style="flex:1; display:flex; flex-direction:column; gap:1.2rem;">
+            <div class="img-stack">
                 <div class="img-small-1"><span class="img-tag">Cozy Throws</span></div>
                 <div class="img-small-2"><span class="img-tag">Baby Sets</span></div>
             </div>
@@ -144,46 +244,46 @@
     <section id="shop" class="section-padding" style="text-align: center;">
         <span class="badge badge-light">✦ OUR COLLECTION</span>
         <h2>Handmade with <em>Care</em></h2>
-        <p style="color: var(--text-light);">Every item is made-to-order, ensuring freshness reaches your door.</p>
+        <p style="color: var(--text-light); max-width: 600px; margin: 0 auto;">Every item is made-to-order, ensuring freshness reaches your door.</p>
         
-        <div class="product-grid">
+        <div class="grid-auto">
             <div class="product-card">
-                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1693387347071-d3bf494cbe0e');">
-                    <span class="tag tag-green" style="position:absolute; top:15px; left:15px; background:#7A9E59; color:#fff; padding:2px 10px; border-radius:10px; font-size:10px;">NEW</span>
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1693387347071-d3bf494cbe0e?auto=format&fit=crop&q=80');">
+                    <span style="position:absolute; top:15px; left:15px; background:#7A9E59; color:#fff; padding:2px 10px; border-radius:10px; font-size:10px; font-weight: 600;">NEW</span>
                 </div>
                 <h3 style="text-align:left;">Garden Throw Blanket</h3>
-                <p style="text-align:left; font-size:11px; color:gray; letter-spacing:1px;">HOME DÉCOR · COTTON</p>
+                <p style="text-align:left; font-size:11px; color:gray; letter-spacing:1px; margin: 5px 0;">HOME DÉCOR · COTTON</p>
                 <div class="price-row">
                     <span class="price">₹3,200</span>
                     <button class="add-btn">+</button>
                 </div>
             </div>
             <div class="product-card">
-                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1565592284032-d3c08f2a53e9');">
-                    <span class="tag tag-orange" style="position:absolute; top:15px; left:15px; background:#D68C5E; color:#fff; padding:2px 10px; border-radius:10px; font-size:10px;">BESTSELLER</span>
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1565592284032-d3c08f2a53e9?auto=format&fit=crop&q=80');">
+                    <span style="position:absolute; top:15px; left:15px; background:#D68C5E; color:#fff; padding:2px 10px; border-radius:10px; font-size:10px; font-weight: 600;">BESTSELLER</span>
                 </div>
                 <h3 style="text-align:left;">Lace Market Bag</h3>
-                <p style="text-align:left; font-size:11px; color:gray; letter-spacing:1px;">ACCESSORIES · JUTE BLEND</p>
+                <p style="text-align:left; font-size:11px; color:gray; letter-spacing:1px; margin: 5px 0;">ACCESSORIES · JUTE BLEND</p>
                 <div class="price-row">
                     <span class="price">₹1,450</span>
                     <button class="add-btn">+</button>
                 </div>
             </div>
             <div class="product-card">
-                <div class="product-img" style="background-image: url('https://images.pexels.com/photos/5806980/pexels-photo-5806980.jpeg');"></div>
+                <div class="product-img" style="background-image: url('https://images.pexels.com/photos/5806980/pexels-photo-5806980.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
                 <h3 style="text-align:left;">Baby Heirloom Set</h3>
-                <p style="text-align:left; font-size:11px; color:gray; letter-spacing:1px;">BABY · MERINO WOOL</p>
+                <p style="text-align:left; font-size:11px; color:gray; letter-spacing:1px; margin: 5px 0;">BABY · MERINO WOOL</p>
                 <div class="price-row">
                     <span class="price">₹2,200</span>
                     <button class="add-btn">+</button>
                 </div>
             </div>
             <div class="product-card">
-                <div class="product-img" style="background-image: url('https://images.pexels.com/photos/33853684/pexels-photo-33853684.jpeg');">
-                    <span class="tag tag-green" style="position:absolute; top:15px; left:15px; background:#7A9E59; color:#fff; padding:2px 10px; border-radius:10px; font-size:10px;">NEW</span>
+                <div class="product-img" style="background-image: url('https://images.pexels.com/photos/33853684/pexels-photo-33853684.jpeg?auto=compress&cs=tinysrgb&w=600');">
+                    <span style="position:absolute; top:15px; left:15px; background:#7A9E59; color:#fff; padding:2px 10px; border-radius:10px; font-size:10px; font-weight: 600;">NEW</span>
                 </div>
                 <h3 style="text-align:left;">Boho Sun Hat</h3>
-                <p style="text-align:left; font-size:11px; color:gray; letter-spacing:1px;">ACCESSORIES · RAFFIA</p>
+                <p style="text-align:left; font-size:11px; color:gray; letter-spacing:1px; margin: 5px 0;">ACCESSORIES · RAFFIA</p>
                 <div class="price-row">
                     <span class="price">₹1,850</span>
                     <button class="add-btn">+</button>
@@ -213,33 +313,33 @@
     </section>
 
     <section id="patterns" class="section-padding patterns">
-        <span class="badge badge-dark">✦ LEARN & CREATE</span>
+        <span class="badge" style="background: rgba(255,255,255,0.1); color: #fff;">✦ LEARN & CREATE</span>
         <h2>Crochet <em>Patterns</em></h2>
         <p style="opacity:0.7;">From beginner-friendly tutorials to complex heirloom designs.</p>
         
-        <div class="pattern-grid">
+        <div class="grid-auto">
             <div class="p-card">
-                <div class="p-img" style="background-image: url('https://images.pexels.com/photos/30036957/pexels-photo-30036957.jpeg');"></div>
+                <div class="p-img" style="background-image: url('https://images.pexels.com/photos/30036957/pexels-photo-30036957.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
                 <div class="p-info">
                     <h3>Sunflower Granny Square</h3>
-                    <span class="p-meta"><span style="background:#444; padding:2px 8px; border-radius:5px;">BEGINNER</span> 2-3 hrs</span>
-                    <span class="price" style="color:#fff;">FREE</span>
+                    <span class="p-meta"><span class="p-tag">BEGINNER</span> 2-3 hrs</span>
+                    <span class="price" style="color:#fff; font-size: 1.2rem;">FREE</span>
                 </div>
             </div>
             <div class="p-card">
-                <div class="p-img" style="background-image: url('https://images.unsplash.com/photo-1760837992224-e73b2ba6f1c6');"></div>
+                <div class="p-img" style="background-image: url('https://images.unsplash.com/photo-1760837992224-e73b2ba6f1c6?auto=format&fit=crop&q=80');"></div>
                 <div class="p-info">
                     <h3>Leaf Lace Shawl</h3>
-                    <span class="p-meta"><span style="background:#5a4033; padding:2px 8px; border-radius:5px;">INTERMEDIATE</span> 6-8 hrs</span>
-                    <span class="price" style="color:#fff;">₹199</span>
+                    <span class="p-meta"><span class="p-tag" style="background: var(--accent-rust);">INTERMEDIATE</span> 6-8 hrs</span>
+                    <span class="price" style="color:#fff; font-size: 1.2rem;">₹199</span>
                 </div>
             </div>
             <div class="p-card">
-                <div class="p-img" style="background-image: url('https://images.unsplash.com/photo-1763055791902-7e13aef5e77c');"></div>
+                <div class="p-img" style="background-image: url('https://images.unsplash.com/photo-1763055791902-7e13aef5e77c?auto=format&fit=crop&q=80');"></div>
                 <div class="p-info">
                     <h3>Owl Amigurumi</h3>
-                    <span class="p-meta"><span style="background:#444; padding:2px 8px; border-radius:5px;">BEGINNER</span> 3-4 hrs</span>
-                    <span class="price" style="color:#fff;">₹149</span>
+                    <span class="p-meta"><span class="p-tag">BEGINNER</span> 3-4 hrs</span>
+                    <span class="price" style="color:#fff; font-size: 1.2rem;">₹149</span>
                 </div>
             </div>
         </div>
@@ -248,7 +348,7 @@
     <section id="reviews" class="section-padding" style="text-align: center;">
         <span class="badge badge-light">✦ KIND WORDS</span>
         <h2>Loved by <em>Makers</em></h2>
-        <div class="review-grid">
+        <div class="grid-auto">
             <div class="r-card">
                 <div class="stars">★★★★★</div>
                 <p style="font-style:italic; font-size:0.95rem;">"The throw blanket is divine — the texture and colour are perfect!"</p>
@@ -279,15 +379,48 @@
     <footer>
         <div class="f-grid">
             <div class="f-brand">
-                <h3>🧶 Knot & Bloom</h3>
-                <p>Handcrafted crochet pieces for those who appreciate the art of slow craft.</p>
+                <h3 style="font-size: 1.5rem;">🧶 Knot & Bloom</h3>
+                <p style="margin-top: 1rem;">Handcrafted crochet pieces for those who appreciate the art of slow craft.</p>
             </div>
-            <div class="f-links"><h4>SHOP</h4><a href="#">All Products</a><a href="#">Blankets</a><a href="#">Baby</a></div>
-            <div class="f-links"><h4>LEARN</h4><a href="#">Free Patterns</a><a href="#">Tutorials</a><a href="#">Blog</a></div>
-            <div class="f-links"><h4>ABOUT</h4><a href="#">Our Story</a><a href="#">Contact</a><a href="#">FAQ</a></div>
+            <div class="f-links">
+                <h4>SHOP</h4>
+                <a href="#">All Products</a>
+                <a href="#">Blankets</a>
+                <a href="#">Baby</a>
+            </div>
+            <div class="f-links">
+                <h4>LEARN</h4>
+                <a href="#">Free Patterns</a>
+                <a href="#">Tutorials</a>
+                <a href="#">Blog</a>
+            </div>
+            <div class="f-links">
+                <h4>ABOUT</h4>
+                <a href="#">Our Story</a>
+                <a href="#">Contact</a>
+                <a href="#">FAQ</a>
+            </div>
         </div>
-        <p style="font-size: 0.7rem; opacity: 0.5;">© 2025 Knot & Bloom. All rights reserved.</p>
+        <p style="font-size: 0.7rem; opacity: 0.5; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem;">© 2026 Knot & Bloom. All rights reserved.</p>
     </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.textContent = '☰';
+            });
+        });
+    </script>
 
 </body>
 </html>
